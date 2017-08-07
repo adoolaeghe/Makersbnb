@@ -7,8 +7,12 @@ We followed this [specification](SPECIFICATION.md).
 *Landlord*
 ```landlord
 As a landlord
-So that I can list a space
+So that I can list a space as myself
 I want to be able to sign up
+
+As a landlord
+So that I can advertise a space
+I want to be able to create a property listing
 
 As a landlord
 So that I can maximise my revenue
@@ -51,16 +55,17 @@ I want to only be able to book available nights
 ```
 
 ---
-#### Mnimum Viable Product
+#### Minimum Viable Product
 *Requirements*
-- Sign up - create user in a database
-- List a space -
-- View a space -
-- Request a booking
-- Confirm a booking
+##### List a space
+Create a page that allows you to enter details for a property advert.
 
-*Technology*
-- HTML
-- Javascript, interface
--
+##### View a space
+Display the property advert on a page.
+
+##### Request a booking
+Interact with the page to request a booking.
+
+##### Confirm a booking
+Have a page that allows you to confirm a booking
 ---
