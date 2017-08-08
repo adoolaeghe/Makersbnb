@@ -19,13 +19,14 @@ app.listen(3000, function() {
 });
 
 app.get('/', function(req, res) {
-  console.log("hiya");
   db.adverts.find(function (err, docs) {
     if(err) {
       console.log(err);
     }
     console.log(docs);
-      res.render('index', {});
+      res.render('index', {
+        adverts: docs
+      });
   });
 });
 

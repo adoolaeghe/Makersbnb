@@ -23,6 +23,10 @@
     </form>
 
     <ul class="advertList">
+      <% adverts.forEach(function(advert) { %>
+        <li><%= advert.name %> <%= advert.booked %><button>Book</button></li>
+
+        <% }) %>
     </ul>
 
   </body>
