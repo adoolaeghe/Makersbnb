@@ -22,6 +22,7 @@
   "dependencies": {
     "body-parser": "^1.17.2",
     "express": "^4.15.4",
-    "mocha": "^3.5.0"
+    "mocha": "^3.5.0",
+    "mongojs": "^2.4.1"
   }
 }
