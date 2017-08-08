@@ -1,6 +1,10 @@
 $(document).ready(function(){
   var list = new List();
 
+  // $('.signUp').click(function(){
+  //   $.get('/users/new');
+  // });
+
   function displayAdverts() {
     var string = "";
     var index = 0;
