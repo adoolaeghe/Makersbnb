@@ -12,13 +12,17 @@ $(document).ready(function(){
   }
 
   $(".addAdvert").click(function() {
-    if (list.adverts().length >= 1) {
-      return;
-    }
-    var name = $(".advertName").val();
-    var advert = new Advert(name);
-    list.add(advert);
-    displayAdverts();
+    // if (list.adverts().length >= 1) {
+    //   return;
+    // }
+
+    // var name = $(".advertName").val();
+    // var json = JSON.stringify({name: $(".advertName").val()})
+    // $post('http://localhost:3000/new-advert', json);
+
+    // var advert = new Advert(name);
+    // list.add(advert);
+    // displayAdverts();
   });
 
   $(".bookAdvert").click(function() {

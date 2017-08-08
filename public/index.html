@@ -12,10 +12,15 @@
     <h1>Find homes on Makers BnB</h1>
     <h2>Discover entire homes and private rooms perfect for any trip.</h2>
 
-    <input type="text" name="advertName" class="advertName">
+    <!-- <input type="text" name="advertName" class="advertName">
     <button type="button" value="addAdvert" class="addAdvert">Add advert</button>
 
-    <button type="button" value="bookAdvert" class="bookAdvert">Book</button>
+    <button type="button" value="bookAdvert" class="bookAdvert">Book</button> -->
+
+    <form action="/new-advert" method="POST">
+      <textarea name ="advertName" rows="10" cols"14"></textarea>
+      <button type="submit">Post advert</button>
+    </form>
 
     <ul class="advertList">
     </ul>
