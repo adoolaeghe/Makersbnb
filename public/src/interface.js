@@ -5,7 +5,7 @@ $(document).ready(function(){
     var string = "";
     var index = 0;
     list.adverts().forEach(function(advert){
-      string += "<li class='.advert1'>" + advert.name() + " - Booked: " + advert.isBooked() + "</li>";
+      string += "<li class='advert1'><span class='advert1Name'>" + advert.name() + "</span> - Booked: <span class='advert1Booked'>" + advert.isBooked() + "</span></li>";
       index += 1;
     });
     $(".advertList").html(string);
