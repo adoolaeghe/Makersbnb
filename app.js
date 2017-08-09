@@ -2,6 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var path = require('path');
 var http = require('http');
+var methodOverride = require('method-override');
 
 var fs   = require('fs');
 var EJS  = require('ejs');
@@ -20,6 +21,7 @@ app.use(express.static(__dirname + '/app/js'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(session({secret: 'newsession'}));
+app.use(methodOverride('_method'));
 
 app.set('port', process.env.PORT || 3000);
 
@@ -30,7 +32,9 @@ app.listen(3000, function() {
 app.get('/', function(req, res) {
   sess=req.session;
   var email = 'james';
-  sess.email = email;
+  if(sess.email) {
+    console.log("You are logged in");
+  }
    db.adverts.find(function (err, docs) {
     if(err) {
       console.log(err);
@@ -86,6 +90,18 @@ app.post('/sessions/new', function(req, res){
   else {
     res.redirect('/user/new');
   }
+});
+
+app.delete('/sessions', function(req, res) {
+  sess=req.session;
+  sess.destroy(function(err) {
+    if(err) {
+      console.log(err);
+    } else {
+      console.log("You have logged out");
+      res.redirect('/');
+    }
+  });
 });
 
 

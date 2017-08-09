@@ -24,6 +24,7 @@
     "ejs": "^2.5.7",
     "express": "^4.15.4",
     "express-session": "^1.15.5",
+    "method-override": "^2.3.9",
     "mocha": "^3.5.0",
     "mongojs": "^2.4.1"
   }
