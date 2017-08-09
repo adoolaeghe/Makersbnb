@@ -29,8 +29,8 @@ app.listen(3000, function() {
 
 app.get('/', function(req, res) {
   sess=req.session;
-  var email = 'james';
-  sess.email = email;
+  //var email = 'james';
+  //sess.email = email;
    db.adverts.find(function (err, docs) {
     if(err) {
       console.log(err);
@@ -108,7 +108,23 @@ app.post('/book', function (req, res) {
 
 app.post('/new-advert', function(req, res) {
   // console.log(req.body.advertName);
+  sess=req.session;
+  // db.users.find(function (err, docs) {
+  //  if(err) {
+  //    console.log(err);
+  //  }
+  //  console.log(docs);
+  //   //  res.render('index', {
+  //   //    adverts: docs
+  //   //  });
+  //  });
+  console.log("Adding advert for " + sess.email);
+  var user = db.users.find({"email": "new@new"});
+  console.log(user);
+  //console.log("Found user with id: " + user._id);
+
   var newAd = {
+    userID : user._id,
     name: req.body.advertName,
     booked: false
   };
@@ -118,7 +134,13 @@ app.post('/new-advert', function(req, res) {
       console.log(err);
     }
     res.redirect('/');
+
   });
+
+  // var advertID = db.adverts.findOne({$query: {}, $orderby: {$natural : -1}})._id;
+  // console.log("advert ID = " + advertID);
+  // db.users.update({email: sess.email}, {'$set' : { 'advertID': advertID }});
+  // consol.log(db.users);
 });
 
 
