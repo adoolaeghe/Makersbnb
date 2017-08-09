@@ -3,6 +3,26 @@
 We followed this [specification](SPECIFICATION.md).
 
 ---
+### Running the app
+
+In your terminal:
+```terminal
+npm install
+```
+
+Install mongo db
+create database `makersBnB`
+create table `adverts`
+In the terminal run:
+```m
+mongod
+```
+create a new terminal window, `cd` to project directory
+```n
+node app
+```
+
+---
 ### User Stories
 *Landlord*
 ```landlord

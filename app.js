@@ -49,12 +49,12 @@ app.get('/users/new', function(req, res) {
 app.post('/users/new', function(req, res) {
   var name = req.body.name;
   var username = req.body.username;
-  var email = req.body.username;
+  var email = req.body.email;
   var password = req.body.password;
   var passwordConfirmation = req.body.passwordConfirmation;
   sess=req.session;
   sess.email = email;
-  console.log(sess.email);
+  console.log("Signed up with email: " + sess.email);
   sess.username = username;
   if(sess.email) {
     // res.send(name); //enter name in the database
@@ -65,12 +65,18 @@ app.post('/users/new', function(req, res) {
   }
 });
 
-app.post('/session/new', function(req, res){
+app.get('/sessions/new', function(req, res) {
+  res.render('sessions/new');
+});
+
+app.post('/sessions/new', function(req, res){
+  console.log("Logged in with email:" + req.body.email);
   sess=req.session;
   sess.email=req.body.email;
   sess.password=req.body.password;
   if (sess.email) {
     if (sess.password) {
+      // get user from database
       res.redirect('/');
     }
     else {
