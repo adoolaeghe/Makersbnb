@@ -24,11 +24,18 @@
 
     <ul class="advertList">
       <% adverts.forEach(function(advert) { %>
-        <li><%= advert.name %> - <%= advert.booked %>
-          <form action="/book" method="POST">
+        <form action="/book" method="POST">
+        <li><%= advert.name %> -
+          <% if(advert.booked) { %>
+          Booked
+        <% } else { %>
+          Vacant
+        <% } %>
+
             <button type="submit" name="bookBtn" value="<%= advert._id %>">Book</button>
           </form>
         </li>
+        <br>
 
         <% }) %>
     </ul>
