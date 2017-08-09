@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "body-parser": "^1.17.2",
+    "database-cleaner": "^1.2.0",
     "ejs": "^2.5.7",
     "express": "^4.15.4",
     "express-session": "^1.15.5",

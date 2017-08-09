@@ -29,18 +29,21 @@ app.listen(3000, function() {
 
 app.get('/', function(req, res) {
   sess=req.session;
-  //var email = 'james';
-  //sess.email = email;
+  db.users.find({email: "a@a"}, function(err, entries){
+    console.log(entries);
+  });
+
    db.adverts.find(function (err, docs) {
     if(err) {
       console.log(err);
     }
-    console.log(docs);
-      res.render('index', {
-        adverts: docs
-      });
+  console.log(docs);
+    res.render('index', {
+      adverts: docs
     });
+  });
 });
+
 
 app.get('/users/new', function(req, res) {
   res.render('users/new');
@@ -109,38 +112,30 @@ app.post('/book', function (req, res) {
 app.post('/new-advert', function(req, res) {
   // console.log(req.body.advertName);
   sess=req.session;
-  // db.users.find(function (err, docs) {
-  //  if(err) {
-  //    console.log(err);
-  //  }
-  //  console.log(docs);
-  //   //  res.render('index', {
-  //   //    adverts: docs
-  //   //  });
-  //  });
+  var user;
   console.log("Adding advert for " + sess.email);
-  var user = db.users.find({"email": "new@new"});
-  console.log(user);
-  //console.log("Found user with id: " + user._id);
-
-  var newAd = {
-    userID : user._id,
-    name: req.body.advertName,
-    booked: false
-  };
-
-  db.adverts.insert(newAd, function(err, result){
+  db.users.findOne({email: sess.email}, function(err, foundUser){
     if(err){
       console.log(err);
     }
-    res.redirect('/');
-
+    user = foundUser;
+    console.log(foundUser);
+    console.log("User ID hexstring " + user._id.toHexString());
+    var newAd = {
+      userID : user._id.toHexString(),
+      name: req.body.advertName,
+      booked: false
+    };
+    db.adverts.insert(newAd, function(err, result){
+      if(err){
+        console.log(err);
+      }
+      console.log("Added advert to user " + user.email + result);
+      res.redirect('/');
+    });
   });
+  // {_id: ObjectID.createFromHexString(userID)}
 
-  // var advertID = db.adverts.findOne({$query: {}, $orderby: {$natural : -1}})._id;
-  // console.log("advert ID = " + advertID);
-  // db.users.update({email: sess.email}, {'$set' : { 'advertID': advertID }});
-  // consol.log(db.users);
 });
 
 
