@@ -2,25 +2,61 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var path = require('path');
 var http = require('http');
+var mongojs = require('mongojs');
+var db = mongojs('makersBnB', ['adverts']);
 
 var app = express();
+
+// var ObjectId = mongojs.ObjectId;
+
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/', function(req, res) {
-  res.render('index',{});
+app.listen(3000, function() {
+  console.log("Server started on Port 3000...");
 });
 
-// app.listen(3000, function() {
-//   console.log("Server started on Port 3000...");
-// });
+app.get('/', function(req, res) {
+  db.adverts.find(function (err, docs) {
+    if(err) {
+      console.log(err);
+    }
+    console.log(docs);
+      res.render('index', {
+        adverts: docs
+      });
+  });
+});
+
+app.post('/book', function (req, res) {
+  // console.log(req.params);
+  db.adverts.update({_id:mongojs.ObjectId(req.body.bookBtn)}, {$set: {booked:true}});
+  res.redirect('/');
+});
+
+app.post('/new-advert', function(req, res) {
+  // console.log(req.body.advertName);
+  var newAd = {
+    name: req.body.advertName,
+    booked: false
+  };
+
+  db.adverts.insert(newAd, function(err, result){
+    if(err){
+      console.log(err);
+    }
+    res.redirect('/');
+  });
+});
 
 //app is a callback function or an express application
-module.exports = app;
-if (!module.parent) {
-  http.createServer(app).listen(process.env.PORT, function(){
-    console.log("Server listening on port " + app.get('port'));
-  });
-}
+// module.exports = app;
+// if (!module.parent) {
+//   http.createServer(app).listen(process.env.PORT, function(){
+//     console.log("Server listening on port " + app.get('port'));
+//   });
+// }
