@@ -30,6 +30,9 @@ app.listen(3000, function() {
 app.get('/', function(req, res) {
   sess=req.session;
   db.users.find({email: "a@a"}, function(err, entries){
+    if(err) {
+      console.log(err);
+    }
     console.log(entries);
   });
 
@@ -65,6 +68,22 @@ app.post('/users/new', function(req, res) {
       email: req.body.email,
       password: req.body.password
     };
+
+    db.users.findOne({email:req.body.email}, function(err, entry){
+      if(err) {
+        console.log(err);
+      }
+      console.log("Email already taken, please enter a unique email " + entry);
+      // redirect
+    });
+
+    db.users.findOne({email:req.body.username}, function(err, entry){
+      if(err) {
+        console.log(err);
+      }
+      console.log("Username already taken, please enter a unique email " + entry);
+      // redirect
+    });
 
     db.users.insert(newUser, function(err, result){
       if(err){
