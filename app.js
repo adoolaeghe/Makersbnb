@@ -23,9 +23,9 @@ app.use(session({secret: 'newsession'}));
 
 app.set('port', process.env.PORT || 3000);
 
-// app.listen(3000, function() {
-//   console.log("Server started on Port 3000...");
-// });
+app.listen(3000, function() {
+  console.log("Server started on Port 3000...");
+});
 
 app.get('/', function(req, res) {
   sess=req.session;
@@ -57,6 +57,17 @@ app.post('/users/new', function(req, res) {
   console.log("Signed up with email: " + sess.email);
   sess.username = username;
   if(sess.email) {
+    var newUser = {
+      username: req.body.username,
+      email: req.body.email,
+      password: req.body.password
+    };
+
+    db.users.insert(newUser, function(err, result){
+      if(err){
+        console.log(err);
+      }
+    });
     // res.send(name); //enter name in the database
     res.redirect('/');
   }
@@ -111,10 +122,10 @@ app.post('/new-advert', function(req, res) {
 });
 
 
-//app is a callback function or an express application
-module.exports = app;
-if (!module.parent) {
-  http.createServer(app).listen(process.env.PORT, function(){
-    console.log("Server listening on port " + app.get('port'));
-  });
-}
+// //app is a callback function or an express application
+// module.exports = app;
+// if (!module.parent) {
+//   http.createServer(app).listen(process.env.PORT, function(){
+//     console.log("Server listening on port " + app.get('port'));
+//   });
+// }
