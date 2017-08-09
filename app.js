@@ -35,13 +35,15 @@ app.get('/', function(req, res) {
   if(sess.email) {
     console.log("You are logged in");
   }
+  var message = ("Welcome" + (sess.email ? (", " +sess.email) : ", please log in."));
    db.adverts.find(function (err, docs) {
     if(err) {
       console.log(err);
     }
     console.log(docs);
       res.render('index', {
-        adverts: docs
+        adverts: docs,
+        welcomeMessage: message
       });
     });
 });

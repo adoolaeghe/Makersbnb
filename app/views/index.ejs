@@ -13,8 +13,13 @@
     <h1>Find homes on Makers BnB</h1>
     <h2>Discover entire homes and private rooms perfect for any trip.</h2>
 
+
+    <h2><%= welcomeMessage %></h2>
+
+
+
     <input type="text" name="advertName" class="advertName">
-    <button type="button" value="addAdvert" class="addAdvert">Add advert</button>
+    <button type="button" value="addAdvert" class="addAdvert">Add Advert</button>
 
     <button type="button" value="bookAdvert" class="bookAdvert">Book</button>
 
@@ -26,7 +31,7 @@
     </form>
 
     <form action="/sessions/new" method="get">
-      <button type="submit" value="logIn" class="logIn">Log in</button>
+      <button type="submit" value="logIn" class="logIn">Log In</button>
     </form>
 
     <form action="/sessions?_method=DELETE" method="post">
