@@ -40,7 +40,6 @@ app.get('/', function(req, res) {
         adverts: docs
       });
     });
-  });
 });
 
 app.get('/users/new', function(req, res) {
