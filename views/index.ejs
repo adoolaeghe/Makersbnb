@@ -2,10 +2,10 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <script src="src/jquery-3.2.1.js"></script>
+    <!-- <script src="src/jquery-3.2.1.js"></script>
     <script src="src/advert.js"></script>
     <script src="src/list.js"></script>
-    <script src="src/interface.js"></script>
+    <script src="src/interface.js"></script> -->
     <title>Makersbnb</title>
   </head>
   <body>
@@ -18,13 +18,17 @@
     <button type="button" value="bookAdvert" class="bookAdvert">Book</button> -->
 
     <form action="/new-advert" method="POST">
-      <textarea name ="advertName" rows="10" cols"14"></textarea>
+      <input type="text" name ="advertName">
       <button type="submit">Post advert</button>
     </form>
 
     <ul class="advertList">
       <% adverts.forEach(function(advert) { %>
-        <li><%= advert.name %> <%= advert.booked %><button>Book</button></li>
+        <li><%= advert.name %> - <%= advert.booked %>
+          <form action="/book" method="POST">
+            <button type="submit" name="bookBtn" value="<%= advert._id %>">Book</button>
+          </form>
+        </li>
 
         <% }) %>
     </ul>

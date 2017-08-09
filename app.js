@@ -7,6 +7,8 @@ var db = mongojs('makersBnB', ['adverts']);
 
 var app = express();
 
+// var ObjectId = mongojs.ObjectId;
+
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
@@ -30,21 +32,25 @@ app.get('/', function(req, res) {
   });
 });
 
-
+app.post('/book', function (req, res) {
+  // console.log(req.params);
+  db.adverts.update({_id:mongojs.ObjectId(req.body.bookBtn)}, {$set: {booked:true}});
+  res.redirect('/');
+});
 
 app.post('/new-advert', function(req, res) {
   // console.log(req.body.advertName);
   var newAd = {
     name: req.body.advertName,
     booked: false
-  }
+  };
 
   db.adverts.insert(newAd, function(err, result){
     if(err){
       console.log(err);
     }
     res.redirect('/');
-  })
+  });
 });
 
 //app is a callback function or an express application
