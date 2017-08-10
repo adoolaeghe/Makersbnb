@@ -4,24 +4,27 @@ var Browser = require('zombie');
 var assert = require('assert');
 var http = require('http');
 
-// http://www.redotheweb.com/2013/01/15/functional-testing-for-nodejs-using-mocha-and-zombie-js.html
 
-describe('Enter an advert', function() {
+describe("entering details for new advert", function(){
 
   before(function() {
     this.server = http.createServer(app).listen(3000);
-    // initialize the browser using the same port as the test application
+
     this.browser = new Browser({ site: 'http://localhost:3000' });
   });
 
-  // load the contact page
   before(function(done) {
-    this.browser.visit('/', done);
+    this.browser.visit('/new-advert', done);
   });
 
-  it('should display a button to enter an advert', function(){
+  it('should show an advert that has been posted', function(done){
     var browser = this.browser;
-    browser.assert.element(".newAdBtn");
+    browser.fill('.advertName', "buckingham");
+    browser.pressButton('.submitAdBtn', function(error){
+      if (error) return done(error);
+      browser.assert.elements('.listing',{ atLeast:1 });
+      done();
+    });
   });
 
   after(function(done) {

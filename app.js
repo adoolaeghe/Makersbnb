@@ -22,7 +22,7 @@ app.use(bodyParser.urlencoded({extended:false}));
 app.use(session({secret: 'newsession'}));
 
 app.set('port', process.env.PORT || 3000);
-
+//
 // app.listen(3000, function() {
 //   console.log("Server started on Port 3000...");
 // });
@@ -93,6 +93,10 @@ app.post('/book', function (req, res) {
   // console.log(req.params);
   db.adverts.update({_id:mongojs.ObjectId(req.body.bookBtn)}, {$set: {booked:true}});
   res.redirect('/');
+});
+
+app.get('/new-advert', function(req, res) {
+  res.render('advert/new');
 });
 
 app.post('/new-advert', function(req, res) {

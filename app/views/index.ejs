@@ -13,21 +13,19 @@
     <h1>Find homes on Makers BnB</h1>
     <h2>Discover entire homes and private rooms perfect for any trip.</h2>
 
-    <form action="/new-advert" method="POST">
-      <input type="text" name ="advertName" class="add-advert-btn">
-      <button type="submit">Post advert</button>
+    <form action="/new-advert" method="GET">
+      <button class="newAdBtn" type="submit">Post a new advert</button>
     </form>
 
     <ul class="advertList">
       <% adverts.forEach(function(advert) { %>
         <form action="/book" method="POST">
-        <li><%= advert.name %> -
+        <li class="listing"><%= advert.name %> -
           <% if(advert.booked) { %>
           Booked
         <% } else { %>
           Vacant
         <% } %>
-
             <button type="submit" name="bookBtn" value="<%= advert._id %>">Book</button>
           </form>
         </li>
