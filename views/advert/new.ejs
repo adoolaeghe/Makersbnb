@@ -9,8 +9,11 @@
     <h2>Post a new advert</h2>
 
     <form action="/new-advert" method="POST">
+      <label for="advertName">Advert name:</label>
       <input type="text" name ="advertName" class="advertName">
+      <label for="advertDescription">Description:</label>
       <input type="text" name ="advertDescription" class="advertDescription">
+      <label for="advertPrice">Price per night:</label>
       <input type="number" name ="advertPrice" class="advertPrice">
       <button class="submitAdBtn" type="submit">Post advert</button>
     </form>
