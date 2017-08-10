@@ -1,0 +1,30 @@
+body {
+  margin: 0px;
+}
+
+div.nav-bar {
+  display: flex;
+  background-color: #efefef;
+}
+
+div.container {
+  justify-content: center;
+  flex-grow: 1
+}
+
+input.signUp {
+  justify-content: center;
+  flex-grow: 1
+}
+
+h1 {
+  justify-content: center
+}
+
+div.listings {
+  display: flex
+}
+
+ul.advertList {
+  justify-content: center
+}

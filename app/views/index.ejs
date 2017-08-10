@@ -20,7 +20,8 @@
     <ul class="advertList">
       <% adverts.forEach(function(advert) { %>
         <form action="/book" method="POST">
-        <li class="listing"><%= advert.name %> -
+        <li class="listing">
+          <%= advert.name %> - <%= advert.description %> - 
           <% if(advert.booked) { %>
           Booked
         <% } else { %>

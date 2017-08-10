@@ -13,7 +13,7 @@ describe("entering details for new advert", function(){
     this.browser = new Browser({ site: 'http://localhost:3000' });
   });
 
-  before(function(done) {
+  beforeEach(function(done) {
     this.browser.visit('/new-advert', done);
   });
 
@@ -26,6 +26,21 @@ describe("entering details for new advert", function(){
       done();
     });
   });
+
+
+  it('sould show the description that has been entered in the form', function(done){
+    var browser = this.browser;
+    var description = "Cosy 5 bedrooms flat with no kitchen, bathrooms, roof, doors, and windows";
+    browser.fill('.advertName', "buckingham");
+    browser.fill('.advertDescription', description);
+    browser.pressButton('.submitAdBtn', function(error){
+      if (error) return done(error);
+      browser.assert.elements('.listing',{ atLeast:1 });
+      assert.equal(browser.text('.advertList').indexOf(description) !== -1, true);
+      done();
+    });
+  });
+
 
   after(function(done) {
     this.server.close(done);

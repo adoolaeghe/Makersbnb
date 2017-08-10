@@ -23,9 +23,9 @@ app.use(session({secret: 'newsession'}));
 
 app.set('port', process.env.PORT || 3000);
 //
-// app.listen(3000, function() {
-//   console.log("Server started on Port 3000...");
-// });
+app.listen(3000, function() {
+  console.log("Server started on Port 3000...");
+});
 
 app.get('/', function(req, res) {
   sess=req.session;
@@ -103,6 +103,7 @@ app.post('/new-advert', function(req, res) {
   // console.log(req.body.advertName);
   var newAd = {
     name: req.body.advertName,
+    description: req.body.advertDescription,
     booked: false
   };
 
@@ -116,9 +117,9 @@ app.post('/new-advert', function(req, res) {
 
 
 //app is a callback function or an express application
-module.exports = app;
-if (!module.parent) {
-  http.createServer(app).listen(process.env.PORT, function(){
-    console.log("Server listening on port " + app.get('port'));
-  });
-}
+// module.exports = app;
+// if (!module.parent) {
+//   http.createServer(app).listen(process.env.PORT, function(){
+//     console.log("Server listening on port " + app.get('port'));
+//   });
+// }
