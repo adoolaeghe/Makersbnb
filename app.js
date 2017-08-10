@@ -41,7 +41,6 @@ app.get('/', function(req, res) {
     }
     console.log(docs);
       res.render('index', {
-        adverts: docs
         adverts: docs,
         welcomeMessage: message
       });
