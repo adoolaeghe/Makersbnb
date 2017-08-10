@@ -13,19 +13,17 @@ var db = mongojs('makersBnB', ['adverts']);
 var app = express();
 var sess;
 
-app.set('views', __dirname + '/app/views/');
+app.set('views', __dirname + '/views/');
 app.set('view engine', 'ejs');
-app.use(express.static(__dirname + '/app/js'));
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(session({secret: 'newsession'}));
 
 app.set('port', process.env.PORT || 3000);
 //
-app.listen(3000, function() {
-  console.log("Server started on Port 3000...");
-});
+// app.listen(3000, function() {
+//   console.log("Server started on Port 3000...");
+// });
 
 app.get('/', function(req, res) {
   sess=req.session;
@@ -117,9 +115,9 @@ app.post('/new-advert', function(req, res) {
 
 
 //app is a callback function or an express application
-// module.exports = app;
-// if (!module.parent) {
-//   http.createServer(app).listen(process.env.PORT, function(){
-//     console.log("Server listening on port " + app.get('port'));
-//   });
-// }
+module.exports = app;
+if (!module.parent) {
+  http.createServer(app).listen(process.env.PORT, function(){
+    console.log("Server listening on port " + app.get('port'));
+  });
+}
