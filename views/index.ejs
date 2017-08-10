@@ -13,8 +13,16 @@
     <h1>Find homes on Makers BnB</h1>
     <h2>Discover entire homes and private rooms perfect for any trip.</h2>
 
+<<<<<<< HEAD:views/index.ejs
     <form action="/new-advert" method="GET">
       <button class="newAdBtn" type="submit">Post a new advert</button>
+=======
+
+    <h2><%= welcomeMessage %></h2>
+    <form action="/new-advert" method="POST">
+      <input type="text" name ="advertName" class="add-advert-btn">
+      <button type="submit">Post advert</button>
+>>>>>>> master:app/views/index.ejs
     </form>
 
     <ul class="advertList">
@@ -40,7 +48,11 @@
     </form>
 
     <form action="/sessions/new" method="get">
-      <button type="submit" value="logIn" class="logIn">Log in</button>
+      <button type="submit" value="logIn" class="logIn">Log In</button>
+    </form>
+
+    <form action="/sessions?_method=DELETE" method="post">
+      <button type="submit" value="logOut" class="logOut">Log Out</button>
     </form>
 
   </body>
