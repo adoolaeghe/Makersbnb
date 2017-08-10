@@ -21,9 +21,8 @@ describe('Enter an advert', function() {
 
   it('should display a button to enter an advert', function(){
     var browser = this.browser;
-    browser.assert.element(".add-advert-btn");
-    });
-
+    browser.assert.element(".newAdBtn");
+  });
 
   after(function(done) {
     this.server.close(done);

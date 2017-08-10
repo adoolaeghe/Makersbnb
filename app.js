@@ -14,17 +14,15 @@ var db = mongojs('makersBnB', ['adverts']);
 var app = express();
 var sess;
 
-app.set('views', __dirname + '/app/views/');
+app.set('views', __dirname + '/views/');
 app.set('view engine', 'ejs');
-app.use(express.static(__dirname + '/app/js'));
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(session({secret: 'newsession'}));
 app.use(methodOverride('_method'));
 
 app.set('port', process.env.PORT || 3000);
-
+//
 // app.listen(3000, function() {
 //   console.log("Server started on Port 3000...");
 // });
@@ -32,6 +30,7 @@ app.set('port', process.env.PORT || 3000);
 app.get('/', function(req, res) {
   sess=req.session;
   var email = 'james';
+  sess.email = email;
   if(sess.email) {
     console.log("You are logged in");
   }
@@ -42,6 +41,7 @@ app.get('/', function(req, res) {
     }
     console.log(docs);
       res.render('index', {
+        adverts: docs
         adverts: docs,
         welcomeMessage: message
       });
@@ -113,10 +113,15 @@ app.post('/book', function (req, res) {
   res.redirect('/');
 });
 
+app.get('/new-advert', function(req, res) {
+  res.render('advert/new');
+});
+
 app.post('/new-advert', function(req, res) {
   // console.log(req.body.advertName);
   var newAd = {
     name: req.body.advertName,
+    description: req.body.advertDescription,
     booked: false
   };
 

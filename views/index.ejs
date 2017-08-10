@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <script src="jquery-3.2.1.js"></script>
+    <script src="../lib/jquery-3.2.1.js"></script>
     <script src="advert.js"></script>
     <script src="list.js"></script>
     <script src="interface.js"></script>
@@ -13,23 +13,28 @@
     <h1>Find homes on Makers BnB</h1>
     <h2>Discover entire homes and private rooms perfect for any trip.</h2>
 
+<<<<<<< HEAD:views/index.ejs
+    <form action="/new-advert" method="GET">
+      <button class="newAdBtn" type="submit">Post a new advert</button>
+=======
 
     <h2><%= welcomeMessage %></h2>
     <form action="/new-advert" method="POST">
       <input type="text" name ="advertName" class="add-advert-btn">
       <button type="submit">Post advert</button>
+>>>>>>> master:app/views/index.ejs
     </form>
 
     <ul class="advertList">
       <% adverts.forEach(function(advert) { %>
         <form action="/book" method="POST">
-        <li><%= advert.name %> -
+        <li class="listing">
+          <%= advert.name %> - <%= advert.description %> -
           <% if(advert.booked) { %>
           Booked
         <% } else { %>
           Vacant
         <% } %>
-
             <button type="submit" name="bookBtn" value="<%= advert._id %>">Book</button>
           </form>
         </li>
