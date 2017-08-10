@@ -6,7 +6,7 @@ var http = require('http');
 
 // http://www.redotheweb.com/2013/01/15/functional-testing-for-nodejs-using-mocha-and-zombie-js.html
 
-describe('Enter and display a name for an advert', function() {
+describe('Enter an advert', function() {
 
   before(function() {
     this.server = http.createServer(app).listen(3000);
@@ -19,13 +19,10 @@ describe('Enter and display a name for an advert', function() {
     this.browser.visit('/', done);
   });
 
-  it('should display the advert name entered when addAdvert button is clicked', function(){
+  it('should display a button to enter an advert', function(){
     var browser = this.browser;
-    browser.fill('advertName', 'home');
-    browser.pressButton('addAdvert').then(function() {
-      assert.equal(browser.text('.advert1Name'), 'home');
+    browser.assert.element(".add-advert-btn");
     });
-  });
 
 
   after(function(done) {

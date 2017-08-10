@@ -15,15 +15,27 @@
 
 
     <h2><%= welcomeMessage %></h2>
-
-
-
-    <input type="text" name="advertName" class="advertName">
-    <button type="button" value="addAdvert" class="addAdvert">Add Advert</button>
-
-    <button type="button" value="bookAdvert" class="bookAdvert">Book</button>
+    <form action="/new-advert" method="POST">
+      <input type="text" name ="advertName" class="add-advert-btn">
+      <button type="submit">Post advert</button>
+    </form>
 
     <ul class="advertList">
+      <% adverts.forEach(function(advert) { %>
+        <form action="/book" method="POST">
+        <li><%= advert.name %> -
+          <% if(advert.booked) { %>
+          Booked
+        <% } else { %>
+          Vacant
+        <% } %>
+
+            <button type="submit" name="bookBtn" value="<%= advert._id %>">Book</button>
+          </form>
+        </li>
+        <br>
+
+        <% }) %>
     </ul>
 
     <form action="/users/new" method="get">
