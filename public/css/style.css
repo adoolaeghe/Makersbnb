@@ -85,17 +85,16 @@ h1 {
   text-shadow: 1px 0px 40px #d1000a;
 }
 
-div.signUpFormContainer {
-  display:flex;
-  align-items: column;
+div.signinUP {
+
 }
 
 form.signUpForm {
   display:flex;
   flex-direction: column;
-  height: 270px;
+  height: 290px;
   padding-top: 130px;
-  font-size: 50px;
+  font-size: 30px;
   justify-content: center;
   color: white;
   text-shadow: 1px 0px 40px #d1000a;

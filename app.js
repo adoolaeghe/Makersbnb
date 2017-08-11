@@ -86,7 +86,18 @@ app.post('/users/new', function(req, res) {
 });
 
 app.get('/sessions/new', function(req, res) {
-  res.render('sessions/new');
+  sess=req.session;
+  var message = ((sess.email ? ("Welcome, " +sess.username) : "Please log in or sign up"));
+   db.adverts.find(function (err, docs) {
+    if(err) {
+      console.log(err);
+    }
+    console.log(docs);
+      res.render('sessions/new', {
+        adverts: docs,
+        welcomeMessage: message
+      });
+    });
 });
 
 app.post('/sessions/new', function(req, res){

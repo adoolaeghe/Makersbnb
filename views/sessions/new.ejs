@@ -1,9 +1,71 @@
 
-    New User
-    <form action="/sessions/new" method="post">
-      <label for="email">Email</label>
-      <input type="email" name="email" value="" placeholder="Email">
-      <label for="password">Password</label>
-      <input type="password" name="password" value="" placeholder="Password">
-      <input type="submit" value="Submit" name="Submit">
-    </form>
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <meta charset="utf-8">
+        <script src="../jquery-3.2.1.js"></script>
+        <script src="../js/advert.js"></script>
+        <script src="../js/list.js"></script>
+        <script src="../js/interface.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+        <link href="../css/style.css" rel="stylesheet" type="text/css">
+        <title>Makersbnb</title>
+      </head>
+      <body>
+      <div class=home-page>
+        <div class='nav-bar'>
+          <h2><%= welcomeMessage %></h2>
+          <img class="logo" src="../assets/mkbnb.png">
+          <form class='nav-btn' action="/users/new" method="get">
+            <button type="submit" value="signUp" class="signUp">Sign up</button>
+          </form>
+
+          <form class='nav-btn' action="/sessions/new" method="get">
+            <button type="submit" value="logIn" class="logIn">Log In</button>
+          </form>
+
+          <form class='nav-btn' action="/sessions?_method=DELETE" method="post">
+            <button type="submit" value="logOut" class="logOut">Log Out</button>
+          </form>
+        </div>
+
+          <div class='signUpForm'>
+            <form class='signUpForm' action="/sessions/new" method="post">
+              Loggin
+              <input class='form' type="email" name="email" value="" placeholder="Email">
+              <input class='form' type="password" name="password" value="" placeholder="Password">
+              <button class='submitSignUp' type="submit" value="Submit" name="Submit">Submit</button>
+            </form>
+          </div>
+      </div>
+
+
+        <ul class="advertList">
+          <% adverts.forEach(function(advert) { %>
+          <li class="listing">
+            <div class='list-container'>
+            <form class="listing" action="/book" method="POST">
+            <div class='name'>
+              <b><%= advert.name %></b>
+            </div>
+            <div class='description'>
+              <i><%= advert.description %></i>
+            </div>
+            <div class='availability'>
+            <% if(advert.booked) { %>
+            Booked
+            <div class='space'> </div>
+              <script>$(".listing").attr("class", "booked-listing");</script>
+            <% } else { %>
+            Vacant
+            <div class='space'> </div>
+            <button class='book' type="submit" name="bookBtn" value="<%= advert._id %>">Book</button>
+            <% } %>
+            </form>
+            </div>
+          </div>
+          </li>
+          <br>
+          <% }) %>
+        </ul>
+      </body>
