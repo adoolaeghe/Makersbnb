@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script src="jquery-3.2.1.js"></script>
+    <script src="advert.js"></script>
+    <script src="list.js"></script>
+    <script src="interface.js"></script>
+    <title>Makersbnb</title>
+  </head>
+  <body>
+
+    <h1>Find homes on Makers BnB</h1>
+    <h2>Discover entire homes and private rooms perfect for any trip.</h2>
+
+    <form action="/new-advert" method="POST">
+      <input type="text" name ="advertName" class="add-advert-btn">
+      <button type="submit">Post advert</button>
+    </form>
+
+    <ul class="advertList">
+      <% adverts.forEach(function(advert) { %>
+        <form action="/book" method="POST">
+        <li><%= advert.name %> -
+          <% if(advert.booked) { %>
+          Booked
+        <% } else { %>
+          Vacant
+        <% } %>
+
+            <button type="submit" name="bookBtn" value="<%= advert._id %>">Book</button>
+          </form>
+        </li>
+        <br>
+
+        <% }) %>
+    </ul>
+
+    <form action="/users/new" method="get">
+      <button type="submit" value="signUp" class="signUp">Sign Up</button>
+    </form>
+
+    <form action="/sessions/new" method="get">
+      <button type="submit" value="logIn" class="logIn">Log in</button>
+    </form>
+
+  </body>
+  </head>

@@ -17,7 +17,7 @@
       <form class='nav-btn' action="/users/new" method="get">
         <button type="submit" value="signUp" class="signUp">Sign up</button>
       </form>
-
+      
       <form class='nav-btn' action="/sessions/new" method="get">
         <button type="submit" value="logIn" class="logIn">Log In</button>
       </form>
@@ -43,6 +43,8 @@
         </div>
         <div class='description'>
           <i><%= advert.description %></i>
+          £<%= advert.price %> per night 
+          Available from: <%= new Date(advert.startDate).toDateString() %> - <%= new Date(advert.endDate).toDateString() %>
         </div>
         <div class='availability'>
         <% if(advert.booked) { %>
