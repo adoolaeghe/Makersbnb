@@ -21,8 +21,7 @@ $(document).ready(function(){
     displayAdverts();
   });
 
-  $(".bookAdvert").click(function() {
-    list.adverts()[0].book();
-    displayAdverts();
+  $(".book").click(function() {
+    $(".listing").attr("class", "booked-listing");
   });
 });
