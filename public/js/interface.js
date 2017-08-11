@@ -20,8 +20,4 @@ $(document).ready(function(){
     list.add(advert);
     displayAdverts();
   });
-
-  // $(".book").click(function() {
-  //   $(".listing").attr("class", "booked-listing");
-  // });
 });

@@ -30,21 +30,12 @@
 
       <div class='signUpForm'>
         <form class='signUpForm' action="/users/new" method="post">
-          <div class='formLabel' for="name">Name</div>
-          <input type="text" name="name" value="" placeholder="Name">
-
-          <div class='formLabel' for="userName">Username</div>
-          <input type="text" name="username" value="" placeholder="Username">
-
-          <div class='formLabel' for="email">Email</div>
-          <input type="email" name="email" value="" placeholder="Email" required="required">
-
-          <div class='formLabel' for="password">Password</div>
-          <input type="password" name="password" value="" placeholder="Password" required="required">
-
-          <div class='formLabel' for="passwordComfirmation">Password Confirmation</div>
-          <input type="password" name="passwordComfirmation" value="" placeholder="Password Confirmation" required="required">
-          <button type="submit" value="Submit" name="Submit">Submit</button>
+          <input class='form' type="text" name="name" value="" placeholder="Name">
+          <input class='form' type="text" name="username" value="" placeholder="Username">
+          <input class='form' type="email" name="email" value="" placeholder="Email" required="required">
+          <input class='form' type="password" name="password" value="" placeholder="Password" required="required">
+          <input class='form' type="password" name="passwordComfirmation" value="" placeholder="Password Confirmation" required="required">
+          <button class='submitSignUp' type="submit" value="Submit" name="Submit">Submit</button>
         </form>
       </div>
   </div>
