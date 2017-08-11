@@ -49,7 +49,18 @@ app.get('/', function(req, res) {
 });
 
 app.get('/users/new', function(req, res) {
-  res.render('users/new');
+  sess=req.session;
+  var message = ((sess.email ? ("Welcome, " +sess.username) : "Please log in or sign up"));
+   db.adverts.find(function (err, docs) {
+    if(err) {
+      console.log(err);
+    }
+    console.log(docs);
+      res.render('users/new', {
+        adverts: docs,
+        welcomeMessage: message
+      });
+    });
 });
 
 app.post('/users/new', function(req, res) {

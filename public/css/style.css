@@ -8,20 +8,24 @@ div.home-page {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  background: linear-gradient(#FF5A5F, #fc415d);
+  /*justify-content: center;*/
+  background: linear-gradient(#FF5A5F, #f93949, #f93e44);
 }
 
 div.nav-bar {
-  height: 240px;
+  height: 70px;
   background-color: white;
-  position: static;
-  flex: start;
+  position: fixed;
   display: flex;
-  justify-content: end;
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
   margin: 0px;
+}
+
+img.logo {
+  height: 70px;
+  width: 70px;
+  margin-right: 280px
 }
 
 form.nav-btn {
@@ -55,8 +59,11 @@ button.book {
 
 button.logIn:hover, .signUp:hover, .logOut:hover, .host:hover, .book:hover{
   color: #FF5A5F;
+  float: center;
   background-color: white;
-  border: solid 2px #FF5A5F;
+  border: solid 3px #FF5A5F;
+  box-shadow:
+	0 0 0 6px white;
   border-radius: 30px
 }
 
@@ -74,7 +81,24 @@ h1 {
   padding-top: 130px;
   font-size: 50px;
   justify-content: center;
-  color: white
+  color: white;
+  text-shadow: 1px 0px 40px #d1000a;
+}
+
+div.signUpFormContainer {
+  display:flex;
+  align-items: column;
+}
+
+form.signUpForm {
+  display:flex;
+  flex-direction: column;
+  height: 200px;
+  padding-top: 130px;
+  font-size: 50px;
+  justify-content: center;
+  color: white;
+  text-shadow: 1px 0px 40px #d1000a;
 }
 
 h2 {
@@ -82,12 +106,14 @@ h2 {
   display: flex;
   justify-content: end;
   margin-left: 60px;
-  margin-right: 800px;
+  margin-right: 320px;
   padding: 0px;
   color: #FF5A5F
 }
 
-
+div.formLabel {
+  font-size: 17px
+}
 
 ul.advertList {
   display: flex;
