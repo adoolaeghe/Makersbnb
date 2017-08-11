@@ -42,18 +42,19 @@
         <div class='name'>
           <b><%= advert.name %></b>
         </div>
+        <b class="adOwner"> Posted by: <%= advert.ownerUsername %></b>
         <div class='description'>
-          <i><%= advert.description %></i>
-          £<%= advert.price %> per night
+          <i><%= advert.description %></i><br>
+          £<%= advert.price %> per night<br>
           Available from: <%= new Date(advert.startDate).toDateString() %> - <%= new Date(advert.endDate).toDateString() %>
         </div>
         <div class='availability'>
         <% if(advert.booked) { %>
-        Booked
+        <b>Booked</b>
           <div class='space'> </div>
           <script>$("#<%= advert._id %>").attr("class", "booked-listing");</script>
         <% } else { %>
-        Vacant
+        <b>Vacant</b>
         <div class='space'> </div>
         <button class='book' type="submit" name="bookBtn" value="<%= advert._id %>">Book</button>
         <% } %>

@@ -42,7 +42,7 @@
 
         <ul class="advertList">
           <% adverts.forEach(function(advert) { %>
-          <li class="listing">
+          <li id="<%= advert._id %>" class="listing">
             <div class='list-container'>
             <form class="listing" action="/book" method="POST">
             <div class='name'>
@@ -55,7 +55,7 @@
             <% if(advert.booked) { %>
             Booked
             <div class='space'> </div>
-              <script>$(".listing").attr("class", "booked-listing");</script>
+              <script>$("#<%= advert._id %>").attr("class", "booked-listing");</script>
             <% } else { %>
             Vacant
             <div class='space'> </div>

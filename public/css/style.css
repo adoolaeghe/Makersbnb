@@ -143,9 +143,15 @@ ul.advertList {
   display: flex;
   flex-wrap: wrap;
 }
+
+b.adOwner {
+  margin-right: 52px;
+  margin-bottom: 5px
+}
+
 li.listing {
   display: flex;
-  height: 100px;
+  height: 150px;
   max-width: 200Px;
   margin: 50px;
 	display: flex;
@@ -157,7 +163,7 @@ li.listing {
 
 li.booked-listing {
   display: flex;
-  height: 100px;
+  height: 150px;
   max-width: 200Px;
   margin: 50px;
 	display: flex;
@@ -212,6 +218,7 @@ div.description {
 
 div.availability {
   display: flex;
+  margin-top: 3px;
   flex-direction: row
 }
 

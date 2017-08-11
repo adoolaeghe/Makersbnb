@@ -40,7 +40,6 @@ app.get('/', function(req, res) {
     if(err) {
       console.log(err);
     }
-    console.log(docs);
       res.render('index', {
         adverts: docs,
         welcomeMessage: message
@@ -55,7 +54,6 @@ app.get('/users/new', function(req, res) {
     if(err) {
       console.log(err);
     }
-    console.log(docs);
       res.render('users/new', {
         adverts: docs,
         welcomeMessage: message
@@ -92,7 +90,6 @@ app.get('/sessions/new', function(req, res) {
     if(err) {
       console.log(err);
     }
-    console.log(docs);
       res.render('sessions/new', {
         adverts: docs,
         welcomeMessage: message
@@ -104,7 +101,6 @@ app.post('/sessions/new', function(req, res){
   console.log("Logged in with email:" + req.body.email);
   sess=req.session;
   db.users.findOne({email: req.body.email}, function(err, foundUser){
-    console.log(foundUser);
     if(foundUser == null){
       res.redirect('/users/new');
     }
@@ -113,6 +109,7 @@ app.post('/sessions/new', function(req, res){
       res.redirect('/users/new');
     }
     else if(req.body.password === foundUser.password){
+      sess.username = foundUser.username;
       sess.email=req.body.email;
       sess.password=req.body.password;
       res.redirect('/');
@@ -155,11 +152,12 @@ app.post('/new-advert', function(req, res) {
       console.log(err);
     }
   user = foundUser;
-  console.log(foundUser);
+
   console.log("User ID hexstring" + user._id.toHexString());
 
   var newAd = {
     userId : user._id.toHexString(),
+    ownerUsername: user.username,
     name: req.body.advertName,
     description: req.body.advertDescription,
     price: req.body.advertPrice,
