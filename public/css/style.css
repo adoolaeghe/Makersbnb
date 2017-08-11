@@ -57,7 +57,7 @@ button.book {
   border: solid 2px #fc415d
 }
 
-button.logIn:hover, .signUp:hover, .logOut:hover, .host:hover, .book:hover{
+button.logIn:hover,.submitSignUp:hover, .signUp:hover, .logOut:hover, .host:hover, .book:hover{
   color: #FF5A5F;
   float: center;
   background-color: white;
@@ -93,12 +93,37 @@ div.signUpFormContainer {
 form.signUpForm {
   display:flex;
   flex-direction: column;
-  height: 200px;
+  height: 270px;
   padding-top: 130px;
   font-size: 50px;
   justify-content: center;
   color: white;
   text-shadow: 1px 0px 40px #d1000a;
+}
+
+input.form {
+  padding: 7px 20px 7px 20px;
+  color: #FF5A5F;
+  width: 200px;
+  border: solid 2px white;
+  border-radius: 10px;
+  font-size: 13px;
+  margin: 5px
+}
+
+button.submitSignUp {
+  padding: 5px 5px 5px 5px;
+  font-size: 12px;
+  color: #fc415d;
+  border: solid 2px white;
+  border-radius: 15px;
+  font-size: 13px;
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100px;
+  background-color: white;
+  border: solid 2px #fc415d
 }
 
 h2 {
