@@ -18,14 +18,18 @@ describe("entering availability for new advert", function(){
 
   it('should show the available dates as per that entered in the new advert form', function(done){
     var browser = this.browser;
-    var price = 100;
-    browser.fill('.advertName', "buckingham palace");
-    browser.fill('.advertPrice', price);
+    var startDate = "01/01/2020";
+    var startDateOutput = new Date(startDate).toDateString();
+    var endDate = "07/07/2017";
+    var endDateOutput = new Date(endDate).toDateString();
 
+    browser.fill('.advertStartDate', startDate);
+    browser.fill('.advertEndDate', endDate);
 
     browser.pressButton('.submitAdBtn', function(error){
       if (error) return done(error);
-      assert.equal(browser.text('.advertList').indexOf(price) !== -1, true);
+      assert.equal(browser.text('.advertList').indexOf(startDateOutput) !== -1, true);
+      assert.equal(browser.text('.advertList').indexOf(endDateOutput) !== -1, true);
       done();
     });
   });

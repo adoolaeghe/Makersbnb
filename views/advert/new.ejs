@@ -11,10 +11,19 @@
     <form action="/new-advert" method="POST">
       <label for="advertName">Advert name:</label>
       <input type="text" name ="advertName" class="advertName">
+
       <label for="advertDescription">Description:</label>
       <input type="text" name ="advertDescription" class="advertDescription">
+
       <label for="advertPrice">Price per night:</label>
       <input type="number" name ="advertPrice" class="advertPrice">
+
+      <label for="advertStartDate">Available from:</label>
+      <input type="date" name ="advertStartDate" class="advertStartDate">
+
+      <label for="advertEndDate">Available until:</label>
+      <input type="date" name ="advertEndDate" class="advertEndDate">
+
       <button class="submitAdBtn" type="submit">Post advert</button>
     </form>
   </body>

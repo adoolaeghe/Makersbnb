@@ -22,7 +22,8 @@
       <% adverts.forEach(function(advert) { %>
         <form action="/book" method="POST">
         <li class="listing">
-          <%= advert.name %> - <%= advert.description %> - £<%= advert.price %> per night - 
+          <%= advert.name %> - <%= advert.description %> - £<%= advert.price %> per night <br>
+          Available from: <%= new Date(advert.startDate).toDateString() %> - <%= new Date(advert.endDate).toDateString() %> <br>
           <% if(advert.booked) { %>
           Booked
         <% } else { %>

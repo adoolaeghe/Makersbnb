@@ -122,6 +122,8 @@ app.post('/new-advert', function(req, res) {
     name: req.body.advertName,
     description: req.body.advertDescription,
     price: req.body.advertPrice,
+    startDate: req.body.advertStartDate,
+    endDate: req.body.advertEndDate,
     booked: false
   };
 
