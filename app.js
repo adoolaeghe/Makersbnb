@@ -18,23 +18,24 @@ app.set('views', __dirname + '/views/');
 app.set('view engine', 'ejs');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
+app.use(express.static(path.join(__dirname + '/public')));
+app.use(express.static(path.join(__dirname + '/lib')));
 app.use(session({secret: 'newsession'}));
 app.use(methodOverride('_method'));
 
 app.set('port', process.env.PORT || 3000);
 //
-// app.listen(3000, function() {
-//   console.log("Server started on Port 3000...");
-// });
+app.listen(3000, function() {
+  console.log("Server started on Port 3000...");
+});
 
 app.get('/', function(req, res) {
   sess=req.session;
-  var email = 'james';
-  sess.email = email;
+
   if(sess.email) {
     console.log("You are logged in");
   }
-  var message = ("Welcome" + (sess.email ? (", " +sess.email) : ", please log in."));
+  var message = ((sess.email ? ("Welcome, " +sess.username) : "Please log in or sign up"));
    db.adverts.find(function (err, docs) {
     if(err) {
       console.log(err);
@@ -52,21 +53,24 @@ app.get('/users/new', function(req, res) {
 });
 
 app.post('/users/new', function(req, res) {
-  var name = req.body.name;
-  var username = req.body.username;
-  var email = req.body.email;
-  var password = req.body.password;
-  var passwordConfirmation = req.body.passwordConfirmation;
   sess=req.session;
-  sess.email = email;
   console.log("Signed up with email: " + sess.email);
-  sess.username = username;
-  if(sess.email) {
-    // res.send(name); //enter name in the database
-    res.redirect('/');
-  }
-  else {
-    res.redirect('/user/new');
+  if(req.body.password == req.body.passwordComfirmation) {
+    var newUser = {
+      name: req.body.name,
+      username: req.body.username,
+      email: req.body.email,
+      password: req.body.password,
+    };
+
+    db.users.insert(newUser, function(err, result){
+      if(err){
+        console.log(err);
+      }
+      sess.email = req.body.email;
+      sess.username = req.body.username;
+      res.redirect('/');
+    });
   }
 });
 
@@ -77,20 +81,24 @@ app.get('/sessions/new', function(req, res) {
 app.post('/sessions/new', function(req, res){
   console.log("Logged in with email:" + req.body.email);
   sess=req.session;
-  sess.email=req.body.email;
-  sess.password=req.body.password;
-  if (sess.email) {
-    if (sess.password) {
-      // get user from database
+  db.users.findOne({email: req.body.email}, function(err, foundUser){
+    console.log(foundUser);
+    if(foundUser == null){
+      res.redirect('/users/new');
+    }
+    else if (err){
+      console.log(err);
+      res.redirect('/users/new');
+    }
+    else if(req.body.password === foundUser.password){
+      sess.email=req.body.email;
+      sess.password=req.body.password;
       res.redirect('/');
     }
     else {
-      res.redirect('/session/new');
+      res.redirect('/sessions/new');
     }
-  }
-  else {
-    res.redirect('/user/new');
-  }
+  });
 });
 
 app.delete('/sessions', function(req, res) {
@@ -107,7 +115,6 @@ app.delete('/sessions', function(req, res) {
 
 
 app.post('/book', function (req, res) {
-  // console.log(req.params);
   db.adverts.update({_id:mongojs.ObjectId(req.body.bookBtn)}, {$set: {booked:true}});
   res.redirect('/');
 });
@@ -117,8 +124,20 @@ app.get('/new-advert', function(req, res) {
 });
 
 app.post('/new-advert', function(req, res) {
-  // console.log(req.body.advertName);
+  sess=req.session;
+  var user;
+  console.log("Adding advert for" + sess.email);
+  db.users.findOne({email: sess.email}, function(err, foundUser) {
+
+    if(err){
+      console.log(err);
+    }
+  user = foundUser;
+  console.log(foundUser);
+  console.log("User ID hexstring" + user._id.toHexString());
+
   var newAd = {
+    userId : user._id.toHexString(),
     name: req.body.advertName,
     description: req.body.advertDescription,
     price: req.body.advertPrice,
@@ -128,18 +147,20 @@ app.post('/new-advert', function(req, res) {
   };
 
   db.adverts.insert(newAd, function(err, result){
-    if(err){
-      console.log(err);
-    }
-    res.redirect('/');
+      if(err){
+        console.log(err);
+      }
+      console.log("Added advert to user"+ user.email + result);
+      res.redirect('/');
+    });
   });
 });
 
 
-//app is a callback function or an express application
-module.exports = app;
-if (!module.parent) {
-  http.createServer(app).listen(process.env.PORT, function(){
-    console.log("Server listening on port " + app.get('port'));
-  });
-}
+//
+// module.exports = app;
+// if (!module.parent) {
+//   http.createServer(app).listen(process.env.PORT, function(){
+//     console.log("Server listening on port " + app.get('port'));
+//   });
+// }
