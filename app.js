@@ -18,6 +18,8 @@ app.set('views', __dirname + '/views/');
 app.set('view engine', 'ejs');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
+app.use(express.static(path.join(__dirname + '/public')));
+app.use(express.static(path.join(__dirname + '/lib')));
 app.use(session({secret: 'newsession'}));
 app.use(methodOverride('_method'));
 
@@ -33,7 +35,7 @@ app.get('/', function(req, res) {
   if(sess.email) {
     console.log("You are logged in");
   }
-  var message = ("Welcome" + (sess.email ? (", " +sess.email) : ", please log in."));
+  var message = ((sess.email ? ("Welcome, " +sess.username) : "Please log in or sign up"));
    db.adverts.find(function (err, docs) {
     if(err) {
       console.log(err);

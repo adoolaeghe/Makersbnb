@@ -1,15 +1,67 @@
 body {
   margin: 0px;
+  font-family: 'Roboto', sans-serif;
+}
+
+div.home-page {
+  height: 480px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(#FF5A5F, #fc415d);
 }
 
 div.nav-bar {
+  height: 240px;
+  background-color: white;
+  position: static;
+  flex: start;
   display: flex;
-  background-color: #efefef;
+  justify-content: end;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  margin: 0px;
+}
+
+form.nav-btn {
+  padding: 10px;
+  height: 80px
+}
+
+button.logIn, .signUp, .logOut, .host, .book {
+  padding: 7px 20px 7px 20px;
+  color: white;
+  background-color: #FF5A5F;
+  border: solid 2px white;
+  border-radius: 15px;
+  font-size: 13px;
+}
+
+button.host {
+  margin-bottom: 30px;
+  font-size: 19px;
+  width: 200px;
+  background-color: #fc415d
+}
+
+button.book {
+  padding: 5px 10px 5px 10px;
+  font-size: 12px;
+  color: #fc415d;
+  background-color: white;
+  border: solid 2px #fc415d
+}
+
+button.logIn:hover, .signUp:hover, .logOut:hover, .host:hover, .book:hover{
+  color: #FF5A5F;
+  background-color: white;
+  border: solid 2px #FF5A5F;
+  border-radius: 30px
 }
 
 div.container {
-  justify-content: center;
-  flex-grow: 1
+  text-align: center
 }
 
 input.signUp {
@@ -18,13 +70,102 @@ input.signUp {
 }
 
 h1 {
-  justify-content: center
+  height: 500px;
+  padding-top: 130px;
+  font-size: 50px;
+  justify-content: center;
+  color: white
 }
 
-div.listings {
-  display: flex
+h2 {
+  flex: start;
+  display: flex;
+  justify-content: end;
+  margin-left: 60px;
+  margin-right: 800px;
+  padding: 0px;
+  color: #FF5A5F
 }
+
+
 
 ul.advertList {
+  display: flex;
+  flex-wrap: wrap;
+}
+li.listing {
+  display: flex;
+  height: 100px;
+  max-width: 200Px;
+  margin: 50px;
+	display: flex;
+  padding: 20px;
+	width: 100%;
+  border-radius: 15px;
+  border: solid 3px  green
+}
+
+li.booked-listing {
+  display: flex;
+  height: 100px;
+  max-width: 200Px;
+  margin: 50px;
+	display: flex;
+  padding: 20px;
+	width: 100%;
+  border-radius: 15px;
+  border: solid 3px  red
+}
+
+li.listing:hover {
+  background-color: #E2FFEB
+}
+
+li.booked-listing:hover {
+  background-color: #fff2f2
+}
+
+form.listing {
+  text-align: center;
+  display:flex;
+  align-items: center;
+  flex-direction: column;
   justify-content: center
+}
+@media all and (min-width: 40em) {
+  li.list-item {
+    width: 50%;
+  }
+}
+@media all and (min-width: 60em) {
+  li.list-item {
+    width: 33.33%;
+  }
+}
+
+div.list-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center
+}
+
+div.name {
+  font-size: 20px;
+  margin-right: auto;
+}
+
+div.description {
+  flex: 3;
+  font-size: 15px;
+  margin-right: auto;
+}
+
+div.availability {
+  display: flex;
+  flex-direction: row
+}
+
+div.space {
+  flex: 3;
+  width: 100px
 }

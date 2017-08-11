@@ -2,58 +2,64 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <script src="../lib/jquery-3.2.1.js"></script>
-    <script src="advert.js"></script>
-    <script src="list.js"></script>
-    <script src="interface.js"></script>
+    <script src="/jquery-3.2.1.js"></script>
+    <script src="/js/advert.js"></script>
+    <script src="/js/list.js"></script>
+    <script src="/js/interface.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet" type="text/css">
     <title>Makersbnb</title>
   </head>
   <body>
+  <div class=home-page>
+    <div class='nav-bar'>
+      <h2><%= welcomeMessage %></h2>
+      <form class='nav-btn' action="/users/new" method="get">
+        <button type="submit" value="signUp" class="signUp">Sign up</button>
+      </form>
 
+      <form class='nav-btn' action="/sessions/new" method="get">
+        <button type="submit" value="logIn" class="logIn">Log In</button>
+      </form>
+
+      <form class='nav-btn' action="/sessions?_method=DELETE" method="post">
+        <button type="submit" value="logOut" class="logOut">Log Out</button>
+      </form>
+    </div>
     <h1>Find homes on Makers BnB</h1>
-    <h2>Discover entire homes and private rooms perfect for any trip.</h2>
-
-<<<<<<< HEAD:views/index.ejs
-    <form action="/new-advert" method="GET">
-      <button class="newAdBtn" type="submit">Post a new advert</button>
-=======
-
-    <h2><%= welcomeMessage %></h2>
-    <form action="/new-advert" method="POST">
-      <input type="text" name ="advertName" class="add-advert-btn">
-      <button type="submit">Post advert</button>
->>>>>>> master:app/views/index.ejs
+    <form class='nav-btn' action="/new-advert" method="get">
+      <button type="submit" value="signUp" class="host">Become a host</button>
     </form>
+  </div>
+
 
     <ul class="advertList">
       <% adverts.forEach(function(advert) { %>
-        <form action="/book" method="POST">
-        <li class="listing">
-          <%= advert.name %> - <%= advert.description %> -
-          <% if(advert.booked) { %>
-          Booked
+      <li class="listing">
+        <div class='list-container'>
+        <form class="listing" action="/book" method="POST">
+        <div class='name'>
+          <b><%= advert.name %></b>
+        </div>
+        <div class='description'>
+          <i><%= advert.description %></i>
+        </div>
+        <div class='availability'>
+        <% if(advert.booked) { %>
+        Booked
+        <div class='space'> </div>
+          <script>$(".listing").attr("class", "booked-listing");</script>
         <% } else { %>
-          Vacant
+        Vacant
+        <div class='space'> </div>
+        <button class='book' type="submit" name="bookBtn" value="<%= advert._id %>">Book</button>
         <% } %>
-            <button type="submit" name="bookBtn" value="<%= advert._id %>">Book</button>
-          </form>
-        </li>
-        <br>
-
-        <% }) %>
+        </form>
+        </div>
+      </div>
+      </li>
+      <br>
+      <% }) %>
     </ul>
-
-    <form action="/users/new" method="get">
-      <button type="submit" value="signUp" class="signUp">Sign Up</button>
-    </form>
-
-    <form action="/sessions/new" method="get">
-      <button type="submit" value="logIn" class="logIn">Log In</button>
-    </form>
-
-    <form action="/sessions?_method=DELETE" method="post">
-      <button type="submit" value="logOut" class="logOut">Log Out</button>
-    </form>
-
   </body>
   </head>
