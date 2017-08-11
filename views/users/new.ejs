@@ -1,14 +1,81 @@
-    New User
-    <form action="/users/new" method="post">
-      <label for="name">Name</label>
-      <input type="text" name="name" value="" placeholder="Name">
-      <label for="userName">Username</label>
-      <input type="text" name="username" value="" placeholder="Username">
-      <label for="email">Email</label>
-      <input type="email" name="email" value="" placeholder="Email" required="required">
-      <label for="password">Password</label>
-      <input type="password" name="password" value="" placeholder="Password" required="required">
-      <label for="passwordComfirmation">Password Confirmation</label>
-      <input type="password" name="passwordComfirmation" value="" placeholder="Password Confirmation" required="required">
-      <input type="submit" value="Submit" name="Submit">
-    </form>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script src="../jquery-3.2.1.js"></script>
+    <script src="../js/advert.js"></script>
+    <script src="../js/list.js"></script>
+    <script src="../js/interface.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet" type="text/css">
+    <title>Makersbnb</title>
+  </head>
+  <body>
+  <div class=home-page>
+    <div class='nav-bar'>
+      <h2><%= welcomeMessage %></h2>
+      <img class="logo" src="../assets/mkbnb.png">
+      <form class='nav-btn' action="/users/new" method="get">
+        <button type="submit" value="signUp" class="signUp">Sign up</button>
+      </form>
+
+      <form class='nav-btn' action="/sessions/new" method="get">
+        <button type="submit" value="logIn" class="logIn">Log In</button>
+      </form>
+
+      <form class='nav-btn' action="/sessions?_method=DELETE" method="post">
+        <button type="submit" value="logOut" class="logOut">Log Out</button>
+      </form>
+    </div>
+
+      <div class='signUpForm'>
+        <form class='signUpForm' action="/users/new" method="post">
+          <div class='formLabel' for="name">Name</div>
+          <input type="text" name="name" value="" placeholder="Name">
+
+          <div class='formLabel' for="userName">Username</div>
+          <input type="text" name="username" value="" placeholder="Username">
+
+          <div class='formLabel' for="email">Email</div>
+          <input type="email" name="email" value="" placeholder="Email" required="required">
+
+          <div class='formLabel' for="password">Password</div>
+          <input type="password" name="password" value="" placeholder="Password" required="required">
+
+          <div class='formLabel' for="passwordComfirmation">Password Confirmation</div>
+          <input type="password" name="passwordComfirmation" value="" placeholder="Password Confirmation" required="required">
+          <button type="submit" value="Submit" name="Submit">Submit</button>
+        </form>
+      </div>
+  </div>
+
+
+    <ul class="advertList">
+      <% adverts.forEach(function(advert) { %>
+      <li class="listing">
+        <div class='list-container'>
+        <form class="listing" action="/book" method="POST">
+        <div class='name'>
+          <b><%= advert.name %></b>
+        </div>
+        <div class='description'>
+          <i><%= advert.description %></i>
+        </div>
+        <div class='availability'>
+        <% if(advert.booked) { %>
+        Booked
+        <div class='space'> </div>
+          <script>$(".listing").attr("class", "booked-listing");</script>
+        <% } else { %>
+        Vacant
+        <div class='space'> </div>
+        <button class='book' type="submit" name="bookBtn" value="<%= advert._id %>">Book</button>
+        <% } %>
+        </form>
+        </div>
+      </div>
+      </li>
+      <br>
+      <% }) %>
+    </ul>
+  </body>
