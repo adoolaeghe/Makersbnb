@@ -36,7 +36,7 @@
 
     <ul class="advertList">
       <% adverts.forEach(function(advert) { %>
-      <li class="listing">
+      <li id="<%= advert._id %>" class="listing">
         <div class='list-container'>
         <form class="listing" action="/book" method="POST">
         <div class='name'>
@@ -44,12 +44,14 @@
         </div>
         <div class='description'>
           <i><%= advert.description %></i>
+          £<%= advert.price %> per night
+          Available from: <%= new Date(advert.startDate).toDateString() %> - <%= new Date(advert.endDate).toDateString() %>
         </div>
         <div class='availability'>
         <% if(advert.booked) { %>
         Booked
-        <div class='space'> </div>
-          <script>$(".listing").attr("class", "booked-listing");</script>
+          <div class='space'> </div>
+          <script>$("#<%= advert._id %>").attr("class", "booked-listing");</script>
         <% } else { %>
         Vacant
         <div class='space'> </div>
