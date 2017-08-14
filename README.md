@@ -1,5 +1,7 @@
 # Makersbnb
 
+![alt text](http://i.imgur.com/ViVhjND.png)
+
 We followed this [specification](SPECIFICATION.md).
 
 ---

@@ -130,7 +130,7 @@ h2 {
   display: flex;
   justify-content: end;
   margin-left: 60px;
-  margin-right: 320px;
+  margin-right: 410px;
   padding: 0px;
   color: #FF5A5F
 }
@@ -151,7 +151,7 @@ b.adOwner {
 
 li.listing {
   display: flex;
-  height: 150px;
+  height: 200px;
   max-width: 200Px;
   margin: 50px;
 	display: flex;
@@ -163,7 +163,7 @@ li.listing {
 
 li.booked-listing {
   display: flex;
-  height: 150px;
+  height: 200px;
   max-width: 200Px;
   margin: 50px;
 	display: flex;
@@ -193,10 +193,12 @@ form.listing {
     width: 50%;
   }
 }
-@media all and (min-width: 60em) {
+
+@media all and (max-width: 60em) {
   li.list-item {
     width: 33.33%;
   }
+  h1 { font-size: 20px}
 }
 
 div.list-container {
